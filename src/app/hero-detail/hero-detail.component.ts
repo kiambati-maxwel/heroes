@@ -14,7 +14,7 @@ import { Hero } from '../hero';
 })
 export class HeroDetailComponent implements OnInit {
   // communicate with child
-  @Input() hero: Hero | undefined;
+  @Input() hero: Hero | any;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,5 +33,8 @@ export class HeroDetailComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+  save(): void {
+    this.heroService.updateHero(this.hero).subscribe(() => this.goBack());
   }
 }
